@@ -77,8 +77,6 @@ for i = 1:m,
   yk(i, y(i)) = 1;
 end
 
-theta1_length = size(Theta1, 1);
-theta2_length = size(Theta2, 1);
 J = sum(sum(-yk .* log(a3) - (1 - yk) .* log(1 - a3))) / m + ...
   lambda * (sum(sum(Theta1(:, 2:end) .^ 2)) + sum(sum(Theta2(:, 2:end) .^ 2))) / (2 * m);
 % J = sum(sum(-yk .* log(a3)) - sum((1 - yk) .* log(1 - a3))) / m;
@@ -103,6 +101,7 @@ for t = 1:m,
   Theta2_grad = Theta2_grad + delta3 * a2';
 end
 
+% Step 5
 Theta1(:, 1) = 0;
 Theta2(:, 1) = 0;
 Theta1_grad = Theta1_grad ./ m + lambda * Theta1 / m;
